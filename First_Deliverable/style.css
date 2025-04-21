@@ -8,32 +8,31 @@ body {
 }
 
 .container {
+    width: 75%;
+    margin: 10px auto;
+    padding: 24px;
+}
+
+.container-ingresos, 
+.container-gastos {
     background: #dee3ed;
     width: 50%;
-    margin: 50px auto;
+    margin: 10px auto;
     padding: 24px;
     border-radius: 10px;
 }
 
-.aviso--text {
-    font-family: "Open Sans", sans-serif;
-    font-size: 12px;
-    color: #dee3ed;
-    width: 50%;
-    margin: 10px auto;
-    border-radius: 10px;
-}
-
 h1 {
-    color: black;
+    color: #fe5f55;
 }
 
 p {
     font-size: 18px;
     line-height: 1.6;
-    color: black;
-    width: 70% ;
+    color: #dee3ed;
+    width: 50% ;
     margin: auto;
+    padding-bottom: 24px;
 }
 
 button {
@@ -50,4 +49,10 @@ button {
 
 button:hover {
     background-color: #fe5f55;
+}
+
+
+.resultado {
+    margin: 10px auto;
+    padding: 16px;
 }

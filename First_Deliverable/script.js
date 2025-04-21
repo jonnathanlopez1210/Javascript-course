@@ -1,47 +1,23 @@
-function inicioSimulador() {
-    let ingresoMensual = parseFloat(prompt("Ingresa tu ingreso mensual:"));
 
-    if (isNaN(ingresoMensual) || ingresoMensual <= 0) {
-        alert("Por favor, ingresa un valor válido.");
-        return;
-    }
+document.getElementById("calcular").addEventListener("click", function() {
+    const ingreso = parseFloat(document.getElementById("ingreso").value);
+    const gastos = parseFloat(document.getElementById("gastos").value);
+    const resultado = document.getElementById("resultado");
 
-    let gastos = [];
-    let continuar = true;
-
-    function agregarGasto() {
-        while (continuar) {
-            let nombreGasto = prompt("Ingresa el nombre del gasto (o escribe 'salir' para finalizar):");
-            
-            if (nombreGasto.toLowerCase() === "salir") {
-                continuar = false;
-                break;
-            }
-
-            let montoGasto = parseFloat(prompt(`Ingresa el monto de ${nombreGasto}:`));
-
-            if (!isNaN(montoGasto) && montoGasto > 0) {
-                gastos.push({ nombre: nombreGasto, monto: montoGasto });
-            } else {
-                alert("Monto inválido. Inténtalo de nuevo.");
-            }
+    if (isNaN(ingreso) || isNaN(gastos)) {
+        resultado.textContent = "Por favor, completa ambos campos.";
+        resultado.style.color = "red";
+    } else { 
+        const balance = ingreso - gastos;
+        if (balance > 0) {
+            resultado.textContent = `¡Buen trabajo! Te sobran $${balance} este mes.`;
+            resultado.style.color = "green";
+        } else if (balance < 0) {
+            resultado.textContent = `Te falta dinero $${Math.abs(balance)}.`;
+            resultado.style.color = "#fe5f55";
+        } else {
+            resultado.textContent = "Has equilibrado tus ingresos y gastos exactamente.";
+            resultado.style.color = "#FFC845";
         }
     }
-
-    function calcularSaldo() {
-        let totalGastos = gastos.reduce((total, gasto) => total + gasto.monto, 0);
-        let saldoFinal = ingresoMensual - totalGastos;
-
-        console.log("Resumen del presupuesto:");
-        console.log(`Ingreso mensual: $${ingresoMensual}`);
-        console.log("Gastos:");
-        gastos.forEach(gasto => console.log(`${gasto.nombre}: $${gasto.monto}`));
-        console.log(`Total de gastos: $${totalGastos}`);
-        console.log(`Saldo restante: $${saldoFinal}`);
-
-        alert(`Tu saldo final es: $${saldoFinal} si quieres ver tu lista teclea f12 y opcion consola`);
-    }
-
-    agregarGasto();
-    calcularSaldo();
-}
+});
